@@ -1,0 +1,15 @@
+.inputBox_wrapper .inputBox {
+  color: rgba(222, 215, 215, 0.95);
+  font-family: "Arial", sans-serif;
+  font-size: 1rem;
+  border: solid, 0.01rem, rgba(222, 215, 215, 0.95);
+}
+.inputBox_wrapper .inputBox:focus {
+  outline-style: solid;
+  outline-color: #3275ef;
+  box-shadow: 0 0 0.05rem #3275ef;
+  border: solid 0.01rem transparent;
+  color: black;
+}
+
+/*# sourceMappingURL=inputBox.css.map */
