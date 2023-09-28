@@ -9,9 +9,16 @@
     &:focus {
       outline-style: solid;
       outline-color: $secondary-color;
-      box-shadow: 0 0 0.05rem $secondary-color;
-      border: solid 0.01rem transparent;
+      box-shadow: 0 0 0.5rem $secondary-color;
+      border: solid 0.5rem transparent;
       color: black;
+    }
+    &:focus::placeholder{
+      color: transparent;
+      opacity: 0;
+    }
+    &::placeholder{
+      padding-left: var(--placeholder-padding);
     }
   }
 }
