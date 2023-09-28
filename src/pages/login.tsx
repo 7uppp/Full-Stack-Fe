@@ -10,6 +10,7 @@ const GoogleStyle={
     color:"white",
     borderRadius:"0.3rem",
     padding:"0.5rem 0",
+    cursor:"pointer",
     border:"none",
 }
 
@@ -19,6 +20,7 @@ const GithubStyle={
     color:"white",
     borderRadius:"0.3rem",
     padding:"0.5rem 0",
+    cursor:"pointer",
     border:"none",
 }
 const Login = () => {
