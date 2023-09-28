@@ -2,48 +2,10 @@ import InputBox from "../components/inputBox.tsx";
 import '../css/login.scss'
 import logo from '../assets/images/logo.jpg'
 import SignInButton from "../components/signInButton.tsx";
+import {GithubStyle, GoogleStyle, inputBoxStyle, LoginStyle} from "../constans.ts";
 
 
-const GoogleStyle={
-    backgroundColor:"#3b5998",
-    width:"100%",
-    color:"white",
-    borderRadius:"0.3rem",
-    padding:"0.5rem 0",
-    cursor:"pointer",
-    border:"none",
-}
 
-const GithubStyle={
-    backgroundColor:"#00aced",
-    width:"100%",
-    color:"white",
-    borderRadius:"0.3rem",
-    padding:"0.5rem 0",
-    cursor:"pointer",
-    border:"none",
-}
-
-const LoginStyle={
-backgroundColor:"#4f77ff",
-    color:'#fff',
-    width:"100%",
-    borderRadius:"0.2rem",
-    padding:"0.8rem 0",
-    boxShadow:"0 0.2rem 0.5rem rgba(0,0,0,0.2)",
-    fontSize:"1.2rem",
-    cursor:"pointer",
-    border:"none",
-}
-
-const inputBoxStyle={
-    width:"100%",
-    height:"2.5rem",
-    borderRadius:"0.2rem",
-    border: "solid 1px rgba(128, 128, 128, 0.7)",
-    boxShadow: "0 0.2rem 0.4rem rgba(0,0,0,0.3)",
-    color:"black",
-}
 
 const Login = () => {
     return (
@@ -51,7 +13,7 @@ const Login = () => {
             <div className={'login_with_thirdParty'}>
                 <div className={'logo_and_company'}>
                     <img src={logo} alt="logo" style={{width:'2.5rem'}}/>
-                    <span>CHAT WITH WORLD</span>
+                    <span>SHARE WITH THE WORLD</span>
                 </div>
                 <div className={'signin_container'}>
                     <SignInButton text={'Signin with Google'}  onClick={()=>{}} customStyle={GoogleStyle}/>

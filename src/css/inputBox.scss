@@ -5,12 +5,13 @@
     color:$placeholder-color;
     font-family:$font-family;
     font-size:$font-size;
-    border:solid, 0.01rem, $placeholder-color;
+    border:solid 0.01rem $placeholder-color;
     &:focus {
       outline-style: solid;
       outline-color: $secondary-color;
       box-shadow: 0 0 0.5rem $secondary-color;
       border: solid 0.5rem transparent;
+      border-radius: 10rem;
       color: black;
     }
     &:focus::placeholder{
