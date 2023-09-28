@@ -1,6 +1,6 @@
 @import "variables";
 
-.inputBox_wrapper{
+
   .inputBox{
     color:$placeholder-color;
     font-family:$font-family;
@@ -22,4 +22,4 @@
       padding-left: var(--placeholder-padding);
     }
   }
-}
+

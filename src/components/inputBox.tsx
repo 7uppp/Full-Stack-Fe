@@ -4,15 +4,15 @@ import '../css/inputBox.scss'
 interface InputBoxProps {
     placeholder?: string;
     customStyle?: React.CSSProperties;
-    setInputValue?: string
+    type?: string;
+    value: string;
     className?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputBox: React.FC<InputBoxProps> = ({placeholder, customStyle, setInputValue,className}) => {
+const InputBox: React.FC<InputBoxProps> = ({placeholder, customStyle, value,className,onChange,type}) => {
     return (
-        <div className={'inputBox_wrapper'}>
-            <input className={`inputBox ${className ? className : ''}`} value={setInputValue} placeholder={placeholder} style={customStyle}/>
-        </div>
+            <input className={`inputBox ${className ? className : ''}`} value={value} placeholder={placeholder} style={customStyle} onChange={onChange} type={type}/>
     );
 };
 

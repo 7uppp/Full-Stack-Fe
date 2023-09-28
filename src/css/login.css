@@ -86,9 +86,23 @@
   padding-left: 1rem;
   font-weight: 600;
 }
-.login_wrapper .login_with_account .inputBox_container .password::placeholder {
+.login_wrapper .login_with_account .inputBox_container .password_field {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.login_wrapper .login_with_account .inputBox_container .password_field .password::placeholder {
   padding-left: 1rem;
   font-weight: 600;
+}
+.login_wrapper .login_with_account .inputBox_container .password_field .password_display_button {
+  position: absolute;
+  border: none;
+  background: transparent;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .login_wrapper .login_with_account .login_options {
   display: flex;
