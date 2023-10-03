@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 interface DataPayload {
     email?: string;
     password?: string;
@@ -11,15 +10,17 @@ const baseUrl = 'http://localhost:8070/api/v1';
 
 const makeRequest = async (method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET', endpoint: string = '', data: DataPayload | null = null) => {
     try {
-        const response = await axios({
+       return await axios({
             method: method,
             url: `${baseUrl}${endpoint}`,
             data: data
         });
-        return response;
     } catch (error) {
-        console.error(error);
-        throw error; // re-throwing the error allows the caller to handle it if needed
+        // Check if it's an AxiosError and throw the complete error, not just the data
+        if (axios.isAxiosError(error)) {
+            console.log(error.response?.data);
+        }
+        throw error;
     }
 };
 

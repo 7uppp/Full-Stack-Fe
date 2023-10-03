@@ -1,0 +1,395 @@
+.dog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 5.375rem;
+  height: 4.25rem;
+  left: 20%;
+  bottom: 1%;
+  z-index: 0;
+}
+.dog .heart {
+  position: absolute;
+  width: 6%;
+  height: 7%;
+  background-color: #e64356;
+  border-bottom-right-radius: 23%;
+  opacity: 0;
+  animation-fill-mode: both;
+}
+@keyframes heart-beat {
+  0% {
+    transform: scale(0.75) rotate(35deg);
+    opacity: 1;
+  }
+  5%, 15%, 25% {
+    transform: scale(1) rotate(35deg);
+  }
+  10%, 20% {
+    transform: scale(0.75) rotate(35deg);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(35deg) translateY(-0.625rem) translateX(-0.625rem);
+    opacity: 0;
+  }
+}
+.dog .heart--1 {
+  top: -35%;
+  left: 15%;
+  animation: heart-beat 2s ease-out infinite 1.5s;
+}
+.dog .heart--2 {
+  top: -36%;
+  left: 7%;
+  animation: heart-beat 2s ease-out infinite 1s;
+}
+.dog .heart--3 {
+  top: -48%;
+  left: 14%;
+  animation: heart-beat 2s ease-out infinite 0.5s;
+}
+.dog .heart--4 {
+  top: -53%;
+  left: -3%;
+  animation: heart-beat 2s ease-out infinite;
+}
+.dog .heart:before,
+.dog .heart:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: "";
+  border-radius: 50%;
+  background-color: #e64356;
+}
+.dog .heart:after {
+  bottom: 0;
+  left: -53%;
+}
+.dog .heart:before {
+  top: -53%;
+  right: 0;
+  transform: rotate(45deg);
+}
+.dog .body {
+  position: absolute;
+  width: 80%;
+  height: 50%;
+  background-color: #f79e38;
+  border-top-right-radius: 17% 40%;
+  border-top-left-radius: 25%;
+  border-bottom-right-radius: 5% 13%;
+  border-bottom-left-radius: 30% 40%;
+  z-index: 3;
+}
+.dog .chest {
+  position: absolute;
+  width: 45%;
+  height: 100%;
+  background-color: #fff;
+  border-top-right-radius: 17% 40%;
+  border-top-left-radius: 25%;
+  border-bottom-right-radius: 40% 40%;
+  border-bottom-left-radius: 40% 40%;
+  z-index: 4;
+}
+.dog .chest:after, .dog .chest:before {
+  position: absolute;
+  content: "";
+  width: 7%;
+  height: 55%;
+  border-radius: 39%;
+  background-color: #fff;
+}
+.dog .chest:after {
+  top: 36%;
+  left: 3%;
+  transform: rotate(-1deg);
+}
+.dog .chest:before {
+  top: 19%;
+  left: -4%;
+}
+.dog .head {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  animation: dog-head 1s ease-out infinite;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+}
+@keyframes dog-head {
+  to {
+    transform: translateX(-0.1875rem) rotate(3deg);
+  }
+}
+.dog .tail {
+  position: absolute;
+  top: -14%;
+  left: 92%;
+  width: 10%;
+  height: 45%;
+  background-color: #f79e38;
+  border-top-right-radius: 30% 30%;
+  border-top-left-radius: 40% 30%;
+  border-bottom-right-radius: 30% 40%;
+  border-bottom-left-radius: 40% 40%;
+  z-index: 2;
+  transform: rotate(20deg);
+  animation: dog-tail 170ms ease-out infinite;
+}
+@keyframes dog-tail {
+  from, to {
+    transform: rotate(10deg);
+  }
+  50%, 60% {
+    transform: rotate(70deg) translateX(0.625rem) translateY(0.125rem);
+  }
+}
+.dog .tail:before {
+  position: absolute;
+  content: "";
+  top: -8%;
+  left: -7%;
+  width: 100%;
+  height: 50%;
+  background-color: #f79e38;
+  border-radius: 50%;
+  animation: dog-tail-before 160ms ease-out infinite;
+}
+@keyframes dog-tail-before {
+  from, to {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0.1875rem);
+  }
+}
+.dog .legs {
+  position: absolute;
+  top: 97%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  z-index: 2;
+  animation: dog-legs 1s ease-out infinite 1.5s;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+}
+@keyframes dog-legs {
+  from {
+    transform: translateY(-0.0625rem);
+  }
+  to {
+    transform: translateY(0rem);
+  }
+}
+.dog .legs-front, .dog .legs-back {
+  width: 10%;
+  height: 100%;
+  background-color: #f79e38;
+  position: absolute;
+  border-bottom-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+}
+.dog .legs-front:after, .dog .legs-back:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 49%;
+  background-color: #fff;
+  border-bottom-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+}
+.dog .legs-front-left {
+  left: 38%;
+  transform: rotate(1deg);
+}
+.dog .legs-front-right {
+  left: 20%;
+  transform: rotate(-4deg);
+}
+.dog .legs-back-left {
+  left: 69%;
+  transform: rotate(-7deg);
+}
+.dog .legs-back-right {
+  left: 85%;
+  transform: rotate(2deg);
+}
+.dog .face {
+  height: 40%;
+  width: 42%;
+  position: absolute;
+  top: -13%;
+  left: -3%;
+  background-color: #fff;
+  border-top-right-radius: 45% 50%;
+  border-top-left-radius: 35% 50%;
+  border-bottom-left-radius: 35% 21%;
+  z-index: 6;
+}
+.dog .face:after, .dog .face:before {
+  content: "";
+  position: absolute;
+  background-color: #f79e38;
+}
+.dog .face:after {
+  width: 27%;
+  left: 7%;
+  height: 23%;
+  border-top-right-radius: 100% 100%;
+  border-bottom-left-radius: 49% 100%;
+  transform: rotate(-64deg);
+  top: -1%;
+  border-top-left-radius: 0% -20%;
+  border-bottom-right-radius: 52% 0%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0.125rem -0.375rem 0.6875rem 0.0625rem;
+}
+.dog .face:before {
+  width: 55%;
+  left: 42%;
+  top: 0%;
+  height: 35%;
+  border-radius: 23% 7% 16% 12%;
+  transform: rotate(0deg) scaleX(-1);
+}
+.dog .eye {
+  width: 6%;
+  height: 6%;
+  position: absolute;
+  border-radius: 100%;
+  top: 24%;
+  background-color: #000;
+  z-index: 6;
+  animation: dog-eye 1800ms infinite;
+}
+@keyframes dog-eye {
+  from, to {
+    animation-timing-function: step-end;
+    opacity: 1;
+  }
+  50%, 55% {
+    animation-timing-function: step-start;
+    opacity: 0;
+  }
+}
+.dog .eye--left {
+  left: 27%;
+}
+.dog .eye--right {
+  left: 46%;
+}
+.dog .mouth {
+  background-color: transparent;
+  border-color: #000;
+  width: 0.8rem;
+  border-style: solid;
+  height: 20%;
+  z-index: 6;
+  position: absolute;
+  bottom: 25%;
+  left: 14%;
+  border-top-color: transparent;
+  border-bottom-left-radius: 72% 100%;
+  border-bottom-right-radius: 77% 100%;
+  border-right-color: transparent;
+  border-top-right-radius: 50%;
+  border-left-color: transparent;
+  transform: rotate(-41deg);
+}
+.dog .ear {
+  position: absolute;
+}
+.dog .ear--left {
+  top: -40%;
+  left: 3%;
+  height: 47%;
+  width: 19%;
+  z-index: 1;
+  background-color: #e99036;
+  border-top-left-radius: 68% 100%;
+  border-top-right-radius: 100% 100%;
+  transform-origin: bottom center;
+  animation: left-ear 1000ms ease-out infinite;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+}
+@keyframes left-ear {
+  from {
+    transform: rotate(-26deg);
+  }
+  25% {
+    transform: rotate(-35deg);
+  }
+  50% {
+    transform: rotate(-26deg);
+  }
+  to {
+    transform: rotate(-40deg);
+  }
+}
+.dog .ear--right {
+  top: -39%;
+  left: 19%;
+  height: 38%;
+  width: 18%;
+  z-index: 1;
+  background-color: #f79e38;
+  border-top-left-radius: 56% 100%;
+  border-top-right-radius: 100% 100%;
+  transform-origin: bottom center;
+  border-bottom-right-radius: 14% 38%;
+  animation: right-ear 1000ms ease-out infinite;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+}
+@keyframes right-ear {
+  from {
+    transform: rotate(-331deg);
+  }
+  25% {
+    transform: rotate(-320deg);
+  }
+  50% {
+    transform: rotate(-331deg);
+  }
+  to {
+    transform: rotate(-320deg);
+  }
+}
+.dog .nose {
+  position: absolute;
+  width: 24%;
+  height: 24%;
+  background-color: #fff;
+  z-index: 7;
+  left: -12%;
+  top: -3%;
+  border-bottom-left-radius: 50% 88%;
+  border-top-left-radius: 11% 43%;
+  transform: rotate(12deg);
+}
+.dog .nose:after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 55%;
+  background-color: #000;
+  border-radius: 100%;
+  left: -7%;
+  top: -18%;
+}
+@media screen and (max-width: 800px) {
+  .dog {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=loginDog.css.map */

@@ -1,0 +1,22 @@
+@keyframes radialEffect {
+  0% {
+    opacity: 0.4;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+.radial {
+  opacity: 0;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-image: radial-gradient(circle at center, red, orange, violet);
+  animation: radialEffect 1s forwards;
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=RadialEffect.css.map */
