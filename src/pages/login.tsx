@@ -54,7 +54,7 @@ const Login: React.FC = () => {
         if (rememberMe) {
           localStorage.setItem('tokens', JSON.stringify(tokens))
         } else {
-          sessionStorage.setItem('tokens', JSON.stringify(tokens)) // 如果不是 "Remember me", 则使用sessionStorage
+          sessionStorage.setItem('tokens', JSON.stringify(tokens)) // if not click remember me, use session storage
         }
         navigate('/home')
       }
