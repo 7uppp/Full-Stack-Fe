@@ -69,40 +69,43 @@ const Login: React.FC = () => {
     }
   }
 
-  //to do /verifyToken endpoint
-  useEffect(() => {
-    const verifyTokenAndLogin = async () => {
-      const tokensFromLocal = localStorage.getItem('tokens')
-      const tokensFromSession = sessionStorage.getItem('tokens')
+  const verifyTokenAndLogin = async () => {
+    const tokensFromLocal = localStorage.getItem('tokens');
+    const tokensFromSession = sessionStorage.getItem('tokens');
 
-      const tokens = tokensFromLocal
+    const tokens = tokensFromLocal
         ? JSON.parse(tokensFromLocal)
         : tokensFromSession
-        ? JSON.parse(tokensFromSession)
-        : null
+            ? JSON.parse(tokensFromSession)
+            : null;
 
-      if (tokens) {
-        try {
-          const response = await makeRequest('POST', '/verifyToken', {
-            accessToken: tokens.accessToken,
-          })
+    if (tokens) {
+      try {
 
-          if (response.status === 200) {
-            navigate('/home')
-          } else {
-            localStorage.removeItem('tokens')
-            sessionStorage.removeItem('tokens')
-          }
-        } catch (error) {
-          console.log('Token verification failed', error)
-          localStorage.removeItem('tokens')
-          sessionStorage.removeItem('tokens')
+        const headers = {
+          Authorization: `Bearer ${tokens.accessToken}`
+        };
+
+        const response = await makeRequest('POST', '/verifyToken', null, headers);
+
+        if (response.status === 200) {
+          navigate('/home');
+        } else {
+          localStorage.removeItem('tokens');
+          sessionStorage.removeItem('tokens');
         }
+      } catch (error) {
+        console.log('Token verification failed', error);
+        // localStorage.removeItem('tokens');
+        sessionStorage.removeItem('tokens');
       }
     }
+  }
 
-    verifyTokenAndLogin()
-  }, [navigate])
+  //to do /verifyToken endpoint
+  useEffect(() => {verifyTokenAndLogin();
+  }, [navigate]);
+
 
   return (
     <div className={'login_wrapper'}>
