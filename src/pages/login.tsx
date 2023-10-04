@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import makeRequest from '../makeRequest.ts'
 import InputBox from '../components/inputBox.tsx'
 import '../css/login.scss'
@@ -9,7 +9,7 @@ import {
   GoogleStyle,
   inputBoxStyle,
   LoginStyle,
-} from '../constans.ts'
+} from '../constants/cssConstans.ts'
 import { useNavigate } from 'react-router-dom'
 import view from '../assets/images/view.svg'
 import hide from '../assets/images/view_off.svg'
@@ -43,8 +43,8 @@ const Login: React.FC = () => {
   }
   const loginHandler = async () => {
     try {
+      console.log('start')
       const response = await makeRequest('POST', '/login', { email, password })
-
       // console.log(response);
       if (response.status === 200) {
         const tokens = {
@@ -59,52 +59,16 @@ const Login: React.FC = () => {
         navigate('/home')
       }
     } catch (e) {
+      console.log(e)
       const errorObj = e as { response?: { status?: number } }
       if (errorObj.response?.status === 401) {
         setunauthorizedError(true)
         console.log('email or password is incorrect, please try again')
       } else {
-        console.log('error')
+        console.log(Error)
       }
     }
   }
-
-  const verifyTokenAndLogin = async () => {
-    const tokensFromLocal = localStorage.getItem('tokens');
-    const tokensFromSession = sessionStorage.getItem('tokens');
-
-    const tokens = tokensFromLocal
-        ? JSON.parse(tokensFromLocal)
-        : tokensFromSession
-            ? JSON.parse(tokensFromSession)
-            : null;
-
-    if (tokens) {
-      try {
-
-        const headers = {
-          Authorization: `Bearer ${tokens.accessToken}`
-        };
-
-        const response = await makeRequest('POST', '/verifyToken', null, headers);
-
-        if (response.status === 200) {
-          navigate('/home');
-        } else {
-          localStorage.removeItem('tokens');
-          sessionStorage.removeItem('tokens');
-        }
-      } catch (error) {
-        console.log('Token verification failed', error);
-        // localStorage.removeItem('tokens');
-        sessionStorage.removeItem('tokens');
-      }
-    }
-  }
-
-  //to do /verifyToken endpoint
-  useEffect(() => {verifyTokenAndLogin();
-  }, [navigate]);
 
 
   return (
@@ -189,7 +153,7 @@ const Login: React.FC = () => {
         </div>
 
         <SignInButton
-          text={'Login with email'}
+          text={'Login'}
           onClick={loginHandler}
           customStyle={LoginStyle}
         />

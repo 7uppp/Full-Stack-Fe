@@ -1,4 +1,6 @@
-import React, {createContext, ReactNode, useState} from 'react';
+import React, {createContext, ReactNode, useEffect, useState} from 'react';
+import makeRequest from "../makeRequest.ts";
+
 
 export const UserInfoContext = createContext<UserInfoContextType | null>(null);
 
@@ -14,9 +16,31 @@ interface UserInfoContextProviderProps {
 
 export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = ({children}) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-   const [userName,setUserName] = useState<string>('')
+    const [isLogin, setIsLogin] = useState<boolean>(false)
+    const [userName, setUserName] = useState<string>('')
+
+    const checkLoginStatus = async () => {
+        try {
+            const response = await makeRequest('POST', '/getUserInfo', {})
+            const user= response.data.user
+            if (response.status === 200) {
+                setIsLogin(true)
+                setUserName(user.username)
+            } else {
+                setIsLogin(false)
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    };
+
+    useEffect(() => {
+        checkLoginStatus();
+    },[]);
+
+
     return (
-        <UserInfoContext.Provider value={{userName,setUserName}}>
+        <UserInfoContext.Provider value={{userName, isLogin}}>
             {children}
         </UserInfoContext.Provider>
     );
