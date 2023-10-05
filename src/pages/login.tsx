@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useContext, useState} from 'react'
 import makeRequest from '../makeRequest.ts'
 import InputBox from '../components/inputBox.tsx'
 import '../css/login.scss'
@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import view from '../assets/images/view.svg'
 import hide from '../assets/images/view_off.svg'
 import LoginDog from '../components/loginDog.tsx'
+import {UserInfoContext} from "../context/userInfoContext.tsx";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('')
@@ -23,6 +24,7 @@ const Login: React.FC = () => {
   const [unauthorizedError, setunauthorizedError] = useState<boolean>(false)
   const [rememberMe, setRememberMe] = useState(false)
 
+  const { setIsLogin } = useContext(UserInfoContext)
   const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const emailValue = e.target.value
@@ -43,10 +45,10 @@ const Login: React.FC = () => {
   }
   const loginHandler = async () => {
     try {
-      console.log('start')
       const response = await makeRequest('POST', '/login', { email, password })
       // console.log(response);
       if (response.status === 200) {
+        setIsLogin(true)
         const tokens = {
           accessToken: response.data.accessToken,
           refreshToken: response.data.refreshToken,
@@ -56,9 +58,10 @@ const Login: React.FC = () => {
         } else {
           sessionStorage.setItem('tokens', JSON.stringify(tokens)) // if not click remember me, use session storage
         }
-        navigate('/home')
+        navigate('/')
       }
     } catch (e) {
+      setIsLogin(false)
       console.log(e)
       const errorObj = e as { response?: { status?: number } }
       if (errorObj.response?.status === 401) {
@@ -103,7 +106,7 @@ const Login: React.FC = () => {
 
         <div className={'sign_up_container'}>
           <span>Don't have an account?</span>
-          <button>Sign Up Free !</button>
+          <button onClick={()=>navigate('/register')}>Sign Up Free !</button>
         </div>
 
         <div className={'inputBox_container'}>

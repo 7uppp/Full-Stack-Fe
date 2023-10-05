@@ -128,7 +128,7 @@
   font-size: 1rem;
   cursor: pointer;
 }
-.login_wrapper .login_with_account .login-dog {
+.login_wrapper .login_with_account .login-animate {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,7 +142,7 @@
     justify-content: center;
   }
   .login_wrapper .login_with_thirdParty {
-    padding: 0 4.5rem;
+    width: 100%;
   }
   .login_wrapper .login_with_account {
     margin-bottom: 2rem;
