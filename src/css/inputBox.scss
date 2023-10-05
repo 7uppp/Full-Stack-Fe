@@ -1,11 +1,11 @@
 @import "variables";
 
-
   .inputBox{
     color:$placeholder-color;
     font-family:$font-family;
     font-size:$font-size;
     border:solid 0.01rem $placeholder-color;
+    box-sizing: border-box;
     &:focus {
       outline-style: solid;
       outline-color: $secondary-color;

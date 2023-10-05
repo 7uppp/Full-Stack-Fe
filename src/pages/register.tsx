@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, { useState} from 'react'
 import makeRequest from '../makeRequest.ts'
 import InputBox from '../components/inputBox.tsx'
 import '../css/register.scss'
@@ -12,54 +12,59 @@ import {useNavigate} from 'react-router-dom'
 import view from '../assets/images/view.svg'
 import hide from '../assets/images/view_off.svg'
 import LoginDog from '../components/loginDog.tsx'
-import {UserInfoContext} from "../context/userInfoContext.tsx";
+import Modal from '../components/modal.tsx'
+import ConfettiEffect from "../components/confettiEffect.tsx";
+import registerFailed from '../assets/images/registerFailed.png'
+
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const [userName, setUserName] = useState<string>('')
+    const [username, setUserName] = useState<string>('')
     const [showPassword, setShowPassword] = useState<boolean>(false)
+    const [modalContent, setModalContent] = useState<string>('');
+    const [isRegisterSuccess, setIsRegisterSuccess] = useState<boolean>(false)
+    const [modalIsOpen, setIsOpen] = useState(false);
     const navigate = useNavigate()
 
-
-    const {setIsLogin} = useContext(UserInfoContext)
     const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         const emailValue = e.target.value
         setEmail(emailValue) // Always update the email state
-    }
+    };
 
     const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         setPassword(e.target.value)
-    }
+    };
 
     const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         setUserName(e.target.value)
-    }
+    };
 
     const showPasswordHandler = () => {
         setShowPassword(!showPassword)
-    }
-    const loginHandler = async () => {
+    };
+    const registerHandler = async () => {
         try {
-            const response = await makeRequest('POST', '/register', {email, password})
+            const response = await makeRequest('POST', '/register', {email, password,username})
             // console.log(response);
             if (response.status === 200) {
-                setIsLogin(true)
+                setIsRegisterSuccess(true)
+                setModalContent(' You will be redirect to login page in 3s ......');
+                setIsOpen(true);
+                setTimeout(() => {
+                    setIsOpen(false);
+                    navigate('/login');
+                }, 3000);
             }
         } catch (e) {
-            setIsLogin(false)
+            setIsRegisterSuccess(false);
+            setIsOpen(true);
             console.log(e)
-            const errorObj = e as { response?: { status?: number } }
-            if (errorObj.response?.status === 401) {
-                console.log('email or password is incorrect, please try again')
-            } else {
-                console.log(Error)
-            }
         }
-    }
+    };
 
 
 
@@ -87,7 +92,7 @@ const Login: React.FC = () => {
                 <div className={'inputBox_container'}>
                     <InputBox
                         type={'text'}
-                        className={'email_login'}
+                        className={'email'}
                         placeholder={'Email'}
                         customStyle={inputBoxStyle}
                         value={email}
@@ -116,22 +121,48 @@ const Login: React.FC = () => {
                     <InputBox
                         type={'text'}
                         className={'userName'}
-                        placeholder={'userName'}
+                        placeholder={'Username'}
                         customStyle={inputBoxStyle}
-                        value={userName}
+                        value={username}
                         onChange={userNameHandler}
                     />
                 </div>
 
                 <SignInButton
                     text={'Register'}
-                    onClick={loginHandler}
+                    onClick={registerHandler}
                     customStyle={LoginStyle}
                 />
             </div>
             <div className="login_animate">
                 <LoginDog/>
             </div>
+            <Modal isOpen={modalIsOpen}>
+                <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
+                    <div  style={{display:'flex',flexDirection:'column',justifyContent:'space-between',alignItems:"center"}}>
+                        <h2>
+                            {isRegisterSuccess
+                                ? <>
+                                    <span>Register success! Welcome to PET SHARE</span>
+                                    <ConfettiEffect />
+                                </>
+                                : <span style={{marginTop:'3rem'}}>Register Failed! Please try again.</span>
+                            }
+                        </h2>
+                        <span>{modalContent}</span>
+                    </div>
+
+                    {!isRegisterSuccess && <>
+                        <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+                            <img style={{width:'6rem'}} src={registerFailed} alt="registerFailed"/>
+                            <button style={{marginLeft:'1rem'}} onClick={() => setIsOpen(false)}>Close</button>
+                        </div>
+
+                    </>}
+                </div>
+
+            </Modal>
+
         </div>
     )
 }

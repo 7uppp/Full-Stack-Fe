@@ -3,6 +3,7 @@
   font-family: "Arial", sans-serif;
   font-size: 1rem;
   border: solid 0.01rem rgba(222, 215, 215, 0.95);
+  box-sizing: border-box;
 }
 .inputBox:focus {
   outline-style: solid;
