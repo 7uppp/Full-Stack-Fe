@@ -5,6 +5,7 @@ const axiosInstance = axios.create({
     baseURL: 'http://localhost:8070/api/v1'
 });
 
+let isFirstRefreshing = true;
 //set request interceptor
 axiosInstance.interceptors.request.use(
     config => {
@@ -26,8 +27,8 @@ axiosInstance.interceptors.response.use(
     async error => {
         console.log(error)
 
-        if (error.response.status === 401) { // token expired
-
+        if (error.response.status === 401  && isFirstRefreshing) { // token expired
+            isFirstRefreshing = false;
             try {
                 const refreshToken = JSON.parse(localStorage.getItem('tokens') ?? '{}' ).refreshToken || JSON.parse(sessionStorage.getItem('tokens') ?? '{}' ).refreshToken
                 ;
