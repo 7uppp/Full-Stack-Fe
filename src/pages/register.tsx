@@ -11,7 +11,6 @@ import {
 import {useNavigate} from 'react-router-dom'
 import view from '../assets/images/view.svg'
 import hide from '../assets/images/view_off.svg'
-import LoginDog from '../components/loginDog.tsx'
 import Modal from '../components/modal.tsx'
 import ConfettiEffect from "../components/confettiEffect.tsx";
 import registerFailed from '../assets/images/registerFailed.png'
@@ -26,26 +25,52 @@ const Login: React.FC = () => {
     const [isRegisterSuccess, setIsRegisterSuccess] = useState<boolean>(false)
     const [modalIsOpen, setIsOpen] = useState(false);
     const navigate = useNavigate()
+    const [emailError, setEmailError] = useState<string | null>(null);
+    const [passwordError, setPasswordError] = useState<string | null>(null);
+    const [usernameError, setUsernameError] = useState<string | null>(null);
 
     const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         const emailValue = e.target.value
-        setEmail(emailValue) // Always update the email state
+        setEmail(emailValue);
+        setEmailError(emailValidation(emailValue));
+
     };
 
     const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
-        setPassword(e.target.value)
+        const passwordValue = e.target.value;
+        setPassword(passwordValue);
+        setPasswordError(passwordValidation(passwordValue));
     };
 
     const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
-        setUserName(e.target.value)
+        const usernameValue = e.target.value;
+        setUserName(usernameValue);
+        setUsernameError(userNameValidation(usernameValue))
     };
 
     const showPasswordHandler = () => {
         setShowPassword(!showPassword)
     };
+
+
+    const emailValidation = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email) ? null : 'Email is not valid';
+    };
+
+    const passwordValidation = (password: string) => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/;
+        return passwordRegex.test(password) ? null : 'Password need 8-16 characters, at least one upper & lowercase & a number'
+    }
+
+    const userNameValidation = (username: string) => {
+        const usernameRegex = /^[a-zA-Z0-9]{3,20}$/;
+        return usernameRegex.test(username) ? null : '3-20 characters, only letters and numbers';
+    }
+
     const registerHandler = async () => {
         try {
             const response = await makeRequest('POST', '/register', {email, password,username})
@@ -98,17 +123,23 @@ const Login: React.FC = () => {
                         value={email}
                         onChange={emailHandler}
                     />
+                    {emailError && <span style={{ color: "red",fontSize:'0.3rem' }}>{emailError}</span>}
                     <div className={'password_field'}>
-                        <InputBox
-                            type={showPassword ? 'text' : 'password'}
-                            className={'password'}
-                            placeholder={'Password'}
-                            customStyle={inputBoxStyle}
-                            value={password}
-                            onChange={passwordHandler}
-                        />
+                        <div style={{display:'flex',flexDirection:'column',width:'100%'}}>
+                            <InputBox
+                                type={showPassword ? 'text' : 'password'}
+                                className={'password'}
+                                placeholder={'Password'}
+                                customStyle={inputBoxStyle}
+                                value={password}
+                                onChange={passwordHandler}
+                            />
+                            {passwordError && <span style={{ color: "red" ,fontSize:'0.3rem'}}>{passwordError}</span>}
+                        </div>
+
                         <button
                             className={'password_display_button'}
+                            style={passwordError ? {display: "none"} : {}}
                             onClick={showPasswordHandler}>
                             {showPassword ? (
                                 <img src={hide} alt="hide"/>
@@ -116,6 +147,7 @@ const Login: React.FC = () => {
                                 <img src={view} alt="view"/>
                             )}
                         </button>
+
                     </div>
 
                     <InputBox
@@ -126,17 +158,22 @@ const Login: React.FC = () => {
                         value={username}
                         onChange={userNameHandler}
                     />
+                    {usernameError && <span style={{ color: "red",fontSize:'0.3rem',marginBottom:'1rem' }}>{usernameError}</span>}
                 </div>
 
-                <SignInButton
-                    text={'Register'}
-                    onClick={registerHandler}
-                    customStyle={LoginStyle}
-                />
+
+                {
+                    !emailError && !passwordError && !usernameError ?
+                        <SignInButton
+                            text={'Register'}
+                            onClick={registerHandler}
+                            customStyle={LoginStyle}
+                        />
+                        : null
+                }
             </div>
-            <div className="login_animate">
-                <LoginDog/>
-            </div>
+
+
             <Modal isOpen={modalIsOpen}>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}}>
                     <div  style={{display:'flex',flexDirection:'column',justifyContent:'space-between',alignItems:"center"}}>

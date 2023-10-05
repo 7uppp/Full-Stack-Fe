@@ -10,6 +10,7 @@
   width: 50rem;
   background: $primary-color;
   border: solid 1px gray;
+  overflow: hidden;
 
   .login_with_thirdParty {
     @include flex_center_column;
@@ -29,6 +30,7 @@
       margin-bottom: 2rem;
 
       span {
+        font-family: "Young Serif", serif;
         white-space: nowrap;
         font-size: 1.2rem;
       }
