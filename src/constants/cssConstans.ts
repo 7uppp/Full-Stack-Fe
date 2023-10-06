@@ -4,7 +4,6 @@ const GoogleStyle={
     color:"white",
     borderRadius:"0.3rem",
     padding:"0.5rem 0",
-    cursor:"pointer",
     border:"none",
 }
 
@@ -14,7 +13,6 @@ const GithubStyle={
     color:"white",
     borderRadius:"0.3rem",
     padding:"0.5rem 0",
-    cursor:"pointer",
     border:"none",
 }
 
@@ -26,7 +24,6 @@ const LoginStyle={
     padding:"0.8rem 0",
     boxShadow:"0 0.2rem 0.5rem rgba(0,0,0,0.2)",
     fontSize:"1.2rem",
-    cursor:"pointer",
     border:"none",
 }
 
