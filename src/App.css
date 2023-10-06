@@ -1,7 +1,5 @@
 .appWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+    max-width: 80rem;
+    margin: 0 auto;
+    background: antiquewhite;
 }

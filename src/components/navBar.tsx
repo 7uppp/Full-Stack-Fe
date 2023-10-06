@@ -20,7 +20,7 @@ const NavBar = () => {
 
                 <div className={'navigate_items'}>
                     {NavItems.map((item, index) => (
-                        <VerticalNavBarItem key={index} image={item.image} text={item.text} />
+                        <VerticalNavBarItem key={index} image={item.image} text={item.text}/>
                     ))}
                 </div>
 
@@ -31,8 +31,8 @@ const NavBar = () => {
                             <span> <a href="/login">log in</a> </span>
                     }
                 </div>
-
-               <GeneralButton text={"POST"} onClick={() => {}} customStyle={{fontSize:"1rem",fontFamily:"Young Serif, serif",height:"2.5rem"}} />
+                <GeneralButton text={"POST"} onClick={() => {
+                }} customStyle={{fontSize: "1rem", fontFamily: "Young Serif, serif", height: "2.5rem",maxWidth:"20%"}}/>
             </div>
 
 
