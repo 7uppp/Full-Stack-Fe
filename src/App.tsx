@@ -3,7 +3,7 @@ import './App.css'
 import Login from "./pages/login.tsx";
 import Hero from "./pages/hero.tsx";
 import './index.css'
-import RadialEffectComponent from "./components/RadialEffect.tsx";
+import RadialEffectComponent from "./components/radialEffect.tsx";
 import {UserInfoContextProvider} from "./context/userInfoContext.tsx";
 import {UserInfoContext} from "./context/userInfoContext.tsx";
 import {useContext} from "react";

@@ -13,8 +13,8 @@ import {
 import { useNavigate } from 'react-router-dom'
 import view from '../assets/images/view.svg'
 import hide from '../assets/images/view_off.svg'
-import LoginDog from '../components/loginDog.tsx'
 import {UserInfoContext} from "../context/userInfoContext.tsx";
+import PawIconAnimate from "../animate/PawIconAnimate.tsx";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('')
@@ -169,7 +169,7 @@ const Login: React.FC = () => {
         ) : null}
       </div>
       <div className="login_animate">
-        <LoginDog />
+        <PawIconAnimate />
       </div>
     </div>
   )

@@ -180,7 +180,7 @@ const Login: React.FC = () => {
                         <h2>
                             {isRegisterSuccess
                                 ? <>
-                                    <span>Register success! Welcome to PET SHARE</span>
+                                    <span>Register success! Welcome to PawMingle </span>
                                     <ConfettiEffect />
                                 </>
                                 : <span style={{marginTop:'3rem'}}>Register Failed! Please try again.</span>
