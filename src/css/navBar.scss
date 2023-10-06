@@ -1,11 +1,41 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap:2rem;
-  .navbar_wrapper{
+  width: 100%;
+
+  .navbar_wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    gap: 2rem;
+
+    .logo_and_Name {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+
+    }
+    .navigate_items{
+      display: flex;
+      flex-direction: column;
+      gap:2rem;
+
+    }
+
+    .profile{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+
+
+      span{
+        align-self: flex-end;
+        font-family: "Young Serif", serif;
+        font-size: 1rem;
+      }
+    }
   }
 }

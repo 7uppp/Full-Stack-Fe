@@ -1,10 +1,10 @@
-import NavBar from "../components/navBar.tsx";
 const Hero = () => {
     return (
 
-        <div>
-            <NavBar />
-            this is Home page
+        <div className={'hero_container'}>
+            <div className="hero_wrapper">
+
+            </div>
         </div>
     );
 };
