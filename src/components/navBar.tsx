@@ -24,17 +24,19 @@ const NavBar = () => {
                     ))}
                 </div>
 
-                <div className={'profile'}>
-                    <img src={avatar} alt="avatar"/>
-                    {
-                        isLogin ? <span>Barkalicious,&nbsp; {userName}</span> :
-                            <span> <a href="/login">log in</a> </span>
-                    }
-                </div>
-                <GeneralButton text={"POST"} onClick={() => {
-                }} customStyle={{fontSize: "1rem", fontFamily: "Young Serif, serif", height: "2.5rem",maxWidth:"20%"}}/>
+
+                <GeneralButton className={'post_button'} text={"Pawst"} onClick={() => {
+                }} customStyle={{fontSize: "0.8rem", fontFamily: "Young Serif, serif", height: "3.2rem",maxWidth:"15%"}}/>
+
             </div>
 
+            <div className={'profile'}>
+                <img src={avatar} alt="avatar"/>
+                {
+                    isLogin ? <span>Barkalicious,&nbsp; {userName}</span> :
+                        <span> <a href="/login">log in</a> </span>
+                }
+            </div>
 
         </div>
     )
