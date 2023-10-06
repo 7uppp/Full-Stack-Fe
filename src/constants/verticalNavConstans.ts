@@ -10,7 +10,7 @@ const NavItems = [
     { image: explore, text: 'Explore' },
     { image: message, text: 'Message' },
     { image: lists, text: 'Lists' },
-    {image: community, text: 'Community'}
+    { image: community, text: 'Community'}
 ];
 
 export default NavItems;

@@ -6,7 +6,6 @@
   background-color:transparent;
   border:none;
   outline: none;
-
   gap:1.5rem;
 
 
@@ -19,7 +18,7 @@
 
     img{
       width:4rem;
-      object-fit:cover;
+      object-fit:contain;
       vertical-align: middle;
     }
 
