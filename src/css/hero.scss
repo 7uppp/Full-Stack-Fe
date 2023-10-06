@@ -1,4 +1,8 @@
 .hero_container {
   max-width: 120rem;
 
+  .hero_wrapper{
+    display: flex;
+    align-items: center;
+  }
 }

@@ -5,6 +5,7 @@ const GoogleStyle={
     borderRadius:"0.3rem",
     padding:"0.5rem 0",
     border:"none",
+    cursor:"pointer",
 }
 
 const GithubStyle={
@@ -14,6 +15,7 @@ const GithubStyle={
     borderRadius:"0.3rem",
     padding:"0.5rem 0",
     border:"none",
+    cursor:"pointer",
 }
 
 const LoginStyle={
@@ -25,6 +27,7 @@ const LoginStyle={
     boxShadow:"0 0.2rem 0.5rem rgba(0,0,0,0.2)",
     fontSize:"1.2rem",
     border:"none",
+    cursor:"pointer",
 }
 
 const inputBoxStyle={

@@ -52,10 +52,10 @@ function RouterContent() {
 
 function AuthenticatedLayout() {
     return (
-        <div>
+        <>
             <Navbar />
             <Outlet />
-        </div>
+        </>
     );
 }
 

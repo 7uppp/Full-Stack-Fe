@@ -1,6 +1,6 @@
 .navbar {
   position: relative;
-  width: 100%;
+  max-width:20%;
   margin-top: 0.5rem;
   min-height: 100vh;
 
@@ -31,28 +31,31 @@
   }
   .profile {
     position: absolute;
-    max-width: 20%;
+    height: 3rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: start;
-    margin-left: 1rem;
     left: 0;
     bottom: 0;
     gap: 0.5rem;
+    background: transparent;
+    border:none;
+    outline: none;
+
+    &:hover{
+      background-color: #dadada;
+      border-radius: 0.8rem;
+      transition: 0.5s;
+      cursor:pointer;
+    }
 
 
     span {
       white-space: nowrap;
-      align-self: flex-end;
       font-family: "Young Serif", serif;
       font-size: 1rem;
     }
   }
 
-  @media (max-width: 800px) {
-    .post_button {
-      min-width: 30%;
-    }
-  }
 }
