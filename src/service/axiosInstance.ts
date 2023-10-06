@@ -28,6 +28,7 @@ axiosInstance.interceptors.response.use(
         console.log(error)
 
         if (error.response.status === 401  && isFirstRefreshing) { // token expired
+            //avoid infinite loop
             isFirstRefreshing = false;
             try {
                 const refreshToken = JSON.parse(localStorage.getItem('tokens') ?? '{}' ).refreshToken || JSON.parse(sessionStorage.getItem('tokens') ?? '{}' ).refreshToken

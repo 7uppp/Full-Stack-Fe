@@ -30,7 +30,6 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
         try {
             const response = await makeRequest('POST', '/getUserInfo', {})
             const user= response.data.user
-            console.log(response)
             if (response.status === 200) {
                 setIsLogin(true)
                 setUserName(user.username)

@@ -24,7 +24,6 @@ function App() {
 function RouterContent() {
     const {isLogin} = useContext(UserInfoContext);
 
-    console.log(isLogin)
     return (
         <BrowserRouter>
             <Routes>
