@@ -1,9 +1,9 @@
 import React, { useState} from 'react'
 import makeRequest from '../makeRequest.ts'
-import InputBox from '../components/inputBox.tsx'
+import InputBox from '../components/boxes/inputBox.tsx'
 import '../css/register.scss'
 import logo from '../assets/images/logo.svg'
-import SignInButton from '../components/signInButton.tsx'
+import SignInButton from '../components/buttons/signInButton.tsx'
 import {
     inputBoxStyle,
     LoginStyle,
@@ -11,8 +11,8 @@ import {
 import {useNavigate} from 'react-router-dom'
 import view from '../assets/images/view.svg'
 import hide from '../assets/images/view_off.svg'
-import Modal from '../components/modal.tsx'
-import ConfettiEffect from "../components/confettiEffect.tsx";
+import Modal from '../modal/modal.tsx'
+import ConfettiEffect from "../animate/confettiEffect.tsx";
 import registerFailed from '../assets/images/registerFailed.png'
 
 

@@ -1,0 +1,50 @@
+.post_box {
+  display: flex;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  gap:1rem;
+
+  img{
+    align-self: flex-start;
+  }
+
+  .make_posts {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    border-bottom: 1px solid #eff3f4;
+    padding-bottom: 0.5rem;
+    box-sizing: border-box;
+
+    .post_input {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #eff3f4;
+      padding-bottom: 0.5rem;
+      box-sizing: border-box;
+      font-size: 1.2rem;
+      font-weight: 500;
+      font-family: "Arial", sans-serif;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      resize: none;
+    }
+
+    .function_buttons_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      .upload_buttons{
+        display: flex;
+        align-items: center;
+        gap:0.5rem;
+      }
+    }
+  }
+
+
+}

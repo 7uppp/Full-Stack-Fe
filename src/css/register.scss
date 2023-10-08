@@ -5,26 +5,27 @@
 .register_wrapper {
   position: relative;
   display: flex;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 80%;
   background: $primary-color;
   overflow: hidden;
-  margin: 0 auto;
+
 
 
 
   .register_content {
     @include flex_center_column;
-    flex: 4.05;
+    flex: 4;
     height: 25rem;
     font-size: 0.8rem;
     padding: 0 1rem;
     box-sizing: border-box;
     color: $primary-color;
-    border: solid 1px gray;
     background-color: #13102c;
+
 
     .logo_and_slogan {
       @include flex_center_column;
@@ -57,7 +58,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 3;
+    flex: 5;
     height: 25rem;
     padding: 0 2rem;
     box-sizing: border-box;

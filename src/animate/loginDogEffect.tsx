@@ -1,5 +1,5 @@
-import '../css/loginDog.scss'
-const LoginDog = () => {
+import '../css/loginDogEffect.scss'
+const LoginDogEffect = () => {
   return (
     <div className="dog">
       <div className="heart heart--1"></div>
@@ -34,4 +34,4 @@ const LoginDog = () => {
   )
 }
 
-export default LoginDog
+export default LoginDogEffect

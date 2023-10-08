@@ -1,5 +1,5 @@
 import React from "react";
-import '../css/inputBox.scss'
+import '../../css/inputBox.scss'
 
 interface InputBoxProps {
     placeholder?: string;

@@ -1,4 +1,4 @@
-import '../css/signInButton.css';
+import '../../css/signInButton.css';
 
 interface SignInButtonProps {
     text: string;

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/verticalNavBarItem.scss'
+import '../../css/verticalNavBarItem.scss'
 
 interface VerticalNavBarItemProps {
     image: string;

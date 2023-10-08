@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/generalButton.scss'
+import '../../css/generalButton.scss'
 
 interface GeneralButtonProps {
     customStyle?: React.CSSProperties;

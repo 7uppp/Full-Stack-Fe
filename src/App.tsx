@@ -2,12 +2,12 @@ import {BrowserRouter, Route, Routes, Navigate, Outlet} from "react-router-dom";
 import Login from "./pages/login.tsx";
 import Hero from "./pages/hero.tsx";
 import './index.css'
-import RadialEffectComponent from "./components/radialEffect.tsx";
+import RadialEffectComponent from "./animate/radialEffect.tsx";
 import {UserInfoContextProvider} from "./context/userInfoContext.tsx";
 import {UserInfoContext} from "./context/userInfoContext.tsx";
 import {useContext} from "react";
 import Register from "./pages/register.tsx";
-import Navbar from "./components/navBar.tsx";
+import Navbar from "./components/navBar/navBar.tsx";
 
 
 

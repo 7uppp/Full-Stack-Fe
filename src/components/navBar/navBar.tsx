@@ -1,11 +1,11 @@
-import '../css/navBar.scss'
-import mainLogo from '../assets/images/mainLogo.svg'
-import {UserInfoContext} from "../context/userInfoContext";
+import '../../css/navBar.scss'
+import mainLogo from '../../assets/images/mainLogo.svg'
+import {UserInfoContext} from "../../context/userInfoContext.tsx";
 import {useContext} from "react";
-import avatar from '../assets/images/avatar.svg'
-import VerticalNavBarItem from "./verticalNavBarItem";
-import NavItems from "../constants/verticalNavConstans.ts";
-import GeneralButton from "./generalButton.tsx";
+import avatar from '../../assets/images/avatar.svg'
+import VerticalNavBarItem from "./verticalNavBarItem.tsx";
+import NavItems from "../../constants/verticalNavConstans.ts";
+import GeneralButton from "../buttons/generalButton.tsx";
 
 
 const NavBar = () => {
@@ -33,7 +33,7 @@ const NavBar = () => {
                 <img src={avatar} alt="avatar"/>
                 {
                     isLogin ? <span>Barkalicious,&nbsp; {userName}</span> :
-                        <span> <a href="/login">log in</a> </span>
+                        <span> <a href="/src/pages/login">log in</a> </span>
                 }
             </button>
 

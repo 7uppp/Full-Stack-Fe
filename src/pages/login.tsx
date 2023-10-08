@@ -1,9 +1,9 @@
 import React, {useContext, useState} from 'react'
 import makeRequest from '../makeRequest.ts'
-import InputBox from '../components/inputBox.tsx'
+import InputBox from '../components/boxes/inputBox.tsx'
 import '../css/login.scss'
 import logo from '../assets/images/logo.svg'
-import SignInButton from '../components/signInButton.tsx'
+import SignInButton from '../components/buttons/signInButton.tsx'
 import {
   GithubStyle,
   GoogleStyle,
@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import view from '../assets/images/view.svg'
 import hide from '../assets/images/view_off.svg'
 import {UserInfoContext} from "../context/userInfoContext.tsx";
-import PawIconAnimate from "../animate/PawIconAnimate.tsx";
+import PawIconAnimate from "../animate/pawIconAnimate.tsx";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('')
