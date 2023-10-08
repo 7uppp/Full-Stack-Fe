@@ -1,5 +1,4 @@
 import {BrowserRouter, Route, Routes, Navigate, Outlet} from "react-router-dom";
-import './App.css'
 import Login from "./pages/login.tsx";
 import Hero from "./pages/hero.tsx";
 import './index.css'
@@ -52,10 +51,10 @@ function RouterContent() {
 
 function AuthenticatedLayout() {
     return (
-        <>
+        <div className={'layout_wrapper'}>
             <Navbar />
             <Outlet />
-        </>
+        </div>
     );
 }
 

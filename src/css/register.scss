@@ -7,20 +7,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 24.3rem;
-  width: 50rem;
+  height: 100vh;
+  width: 80%;
   background: $primary-color;
-  border: solid 1px gray;
   overflow: hidden;
+  margin: 0 auto;
+
+
 
   .register_content {
     @include flex_center_column;
     flex: 4.05;
-    height: 24.3rem;
+    height: 25rem;
     font-size: 0.8rem;
     padding: 0 1rem;
     box-sizing: border-box;
     color: $primary-color;
+    border: solid 1px gray;
     background-color: #13102c;
 
     .logo_and_slogan {
@@ -58,6 +61,7 @@
     height: 25rem;
     padding: 0 2rem;
     box-sizing: border-box;
+    border: solid 1px gray;
     gap:1rem;
 
     .register_title {
