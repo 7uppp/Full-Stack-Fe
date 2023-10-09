@@ -1,5 +1,5 @@
 import axios from 'axios';
-import axiosInstance from "./service/axiosInstance.ts";
+import axiosInstance from "./axiosInstance.ts";
 
 interface DataPayload {
     email?: string;

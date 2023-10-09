@@ -1,0 +1,41 @@
+.post_container{
+  width: 100%;
+  overflow: hidden;
+  &:hover{
+    background-color: #f2f2f2;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+
+  .poster_information_container{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+
+
+
+    .poster_details{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  .post_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 3rem;
+
+  }
+
+  .reply_post{
+     display: flex;
+     align-items: center;
+     gap: 4rem;
+     padding: 0 3rem;
+  }
+
+}

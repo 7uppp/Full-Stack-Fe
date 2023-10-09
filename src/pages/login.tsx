@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react'
-import makeRequest from '../makeRequest.ts'
+import makeRequest from '../service/makeRequest.ts'
 import InputBox from '../components/boxes/inputBox.tsx'
 import '../css/login.scss'
 import logo from '../assets/images/logo.svg'

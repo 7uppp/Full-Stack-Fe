@@ -1,0 +1,10 @@
+.postActionButton_container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  span{
+    font-size: 0.8rem;
+    align-self: end;
+    color: #8d8d8d;
+  }
+}

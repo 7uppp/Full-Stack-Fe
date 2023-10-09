@@ -1,5 +1,6 @@
 import '../css/hero.scss'
-import MakePost from "../components/makePost.tsx";
+import MakePost from "../components/post/makePost.tsx";
+import ShowLatestTenPosts from "../components/post/showLatestTenPosts.tsx";
 
 
 
@@ -13,10 +14,7 @@ const Hero = () => {
                     Home
                 </div>
                 <MakePost/>
-                <div className={'navigate_button'}>
-                    <button>For you</button>
-                    <button>Following</button>
-                </div>
+                <ShowLatestTenPosts/>
             </div>
         </div>
     );
