@@ -1,6 +1,7 @@
 .hero_container {
   width: 45rem;
-  height: 100vh;
+  min-height: 100vh;
+  margin-left: 1rem;
 
   .hero_wrapper {
     display: flex;
@@ -8,13 +9,13 @@
     border-style: solid;
     border-color: transparent #eff3f4 transparent #eff3f4;
     border-width: 1px;
-    padding: 0 1rem;
     box-sizing: border-box;
 
   }
 
   .home_row {
     margin-top: 2rem;
+    margin-left: 1rem;
     font-size: 1.2rem;
     font-weight: 600;
   }
