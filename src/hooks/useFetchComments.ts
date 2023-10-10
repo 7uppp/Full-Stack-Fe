@@ -2,8 +2,16 @@
 import { useState, useCallback } from 'react';
 import makeRequest from '../service/makeRequest';
 
+
+type CommentType = {
+    userName: string;
+    userAvatar: string;
+    comment: string;
+    createAt: string;
+    postImg?: string;
+};
 const useFetchComments = (postId: string) => {
-    const [allComments, setAllComments] = useState([]);
+    const [allComments, setAllComments] = useState<CommentType[]>([]);
     const [isFetchComment, setIsFetchComment] = useState(false);
 
     const fetchAllComments = useCallback(async () => {

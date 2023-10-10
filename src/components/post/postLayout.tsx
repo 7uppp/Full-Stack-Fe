@@ -64,7 +64,7 @@ const PostLayout: React.FC<PostLayoutProps> = ({
                 {postImg && <img src={postImg} alt="postImg"/>}
             </div>
 
-            {showCommentBox && <WriteCommentBox setShowCommentBox={setShowCommentBox} postId={postId}/>}
+            {showCommentBox ? <WriteCommentBox setShowCommentBox={setShowCommentBox} postId={postId}/> : null}
 
             <div className={'reply_post'}>
                 <PostActionButton totalNumber={commentCount} image={commentIcon}
@@ -82,11 +82,11 @@ const PostLayout: React.FC<PostLayoutProps> = ({
             </div>
 
             {
-                isFetchComment && openCommentBox && allComments.map((comment) => {
+                isFetchComment && openCommentBox && (allComments || []).map((comment) => {
                     return(
-                      <div className={'show_comment_box'}>
-                          <ShowCommentBox userName={comment.userName} userAvatar={comment.userAvatar} commentContent={comment.comment} createAt={comment.createAt} postImg={comment.postImg} />
-                      </div>
+                      <>
+                          {showCommentBox ? <ShowCommentBox userName={comment?.userName} userAvatar={comment?.userAvatar} commentContent={comment?.comment} createAt={comment?.createAt} postImg={comment?.postImg} /> : null}
+                      </>
                     )
                 })
             }

@@ -21,6 +21,7 @@ const WriteCommentBox: React.FC<CommentBoxProps> = ({setShowCommentBox, postId})
         setComment(e.target.value)
     }
     const SubmitCommentHandler = async () => {
+        setShowCommentBox(false)
         if (!userId) {
             navigate('/login')
         }

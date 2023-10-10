@@ -28,7 +28,7 @@ const ShowCommentBox:React.FC<ShowCommentBoxProps> = ({userName, userAvatar,comm
             </div>
 
             < div className={'comment_content'}>
-                <div className={'comment'}>{commentContent}</div>
+                <textarea>{commentContent}</textarea>
                 {postImg && <img src={postImg} alt="postImg"/>}
             </div>
 
