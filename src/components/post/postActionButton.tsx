@@ -2,7 +2,7 @@ import React from 'react';
 import '../../css/postActionButton.scss'
 
 interface PostActionButtonProps {
-    totalNumber: number,
+    totalNumber?: number,
     image: string,
     onClick: () => void
 }

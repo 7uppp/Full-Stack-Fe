@@ -6,7 +6,7 @@ import RadialEffectComponent from "./animate/radialEffect.tsx";
 import {UserInfoContextProvider} from "./context/userInfoContext.tsx";
 import Register from "./pages/register.tsx";
 import Navbar from "./components/navBar/navBar.tsx";
-import CommentBox from "./components/boxes/commentBox.tsx";
+import WriteCommentBox from "./components/boxes/writeCommentBox.tsx";
 
 
 function App() {
@@ -28,7 +28,7 @@ function RouterContent() {
                 </Route>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path={"/auth/posts/:postId/comments"} element={CommentBox}/>
+                <Route path={"/auth/posts/:postId/comments"} element={WriteCommentBox}/>
             </Routes>
             <RadialEffectComponent/>
         </BrowserRouter>

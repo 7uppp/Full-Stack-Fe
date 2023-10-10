@@ -25,13 +25,14 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
     const [isLogin, setIsLogin] = useState<boolean>(false)
     const [userName, setUserName] = useState<string>('')
     const [allPosts, setAllPosts] = useState(null)
-    const [userId, setUserId] = useState<string>(null)
-    const [postId, setPostId] = useState<string>(null)
+    const [userId, setUserId] = useState<string>('')
+    const [postId, setPostId] = useState<string>('')
 
     const checkLoginStatus = async () => {
         try {
             const response = await makeRequest('POST', '/getUserInfo', {})
             const user = response.data.user
+
             if (response.status === 200) {
                 setIsLogin(true)
                 setUserName(user.username)
@@ -44,13 +45,14 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
         }
     };
 
-    const loadLatestTenPosts = async () => {
+    const loadAllPosts = async () => {
         try {
             const response = await makeRequest('GET', '/posts', {})
             if (response.status === 200) {
-                // console.log(response.data)
+
                 setAllPosts(response.data?.data)
                 setPostId(response.data?.data[0].postId)
+
             }
         } catch (e) {
             console.log(e)
@@ -59,7 +61,7 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
 
     useEffect(() => {
         checkLoginStatus();
-        loadLatestTenPosts();
+        loadAllPosts();
     }, []);
 
 

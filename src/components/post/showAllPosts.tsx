@@ -1,19 +1,19 @@
-
 import PostLayout from "./postLayout.tsx";
 import {useContext} from "react";
 import {UserInfoContext} from "../../context/userInfoContext.tsx";
+import defaultAvatar from '../../assets/images/avatar.svg'
 
 
-const ShowLatestTenPosts = () => {
-    const {latestTenPosts} = useContext(UserInfoContext)
-    const latestPosts = latestTenPosts || [];
+const ShowAllPosts = () => {
+    const {allPosts} = useContext(UserInfoContext)
+    const allPostsContent = allPosts || [];
 
     return (
         <>
-        { latestPosts.slice(0,10).map((post:any) => (
-            <>
+            {allPostsContent.slice(0, 10).map((post: any) => (
                 <PostLayout
-                    userAvatar={post.userAvatar}
+                    key={post.postId}
+                    userAvatar={post.userAvatar ?? defaultAvatar}
                     userName={post.userName}
                     postContent={post.post}
                     postImg={post.postImg}
@@ -23,10 +23,10 @@ const ShowLatestTenPosts = () => {
                     // likeCount={post.likeCount}
                     // commentCount={post.commentCount}
                 />
-            </>
-        ))}
+
+            ))}
         </>
     );
 };
 
-export default ShowLatestTenPosts;
+export default ShowAllPosts;

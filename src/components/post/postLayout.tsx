@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext,useState} from 'react';
 import PostActionButton from "./postActionButton.tsx";
 import defaultAvatar from '../../assets/images/avatar.svg'
 import likeIconForCount from '../../assets/images/notLikedIcon.svg'
@@ -6,7 +6,11 @@ import shareIcon from "../../assets/images/shareIcon.svg";
 import {timeDiff} from "../../utility/utility.ts";
 import '../../css/postLayout.scss'
 import commentIcon from "../../assets/images/commentIcon.svg";
-import CommentBox from "../boxes/commentBox.tsx";
+import WriteCommentBox from "../boxes/writeCommentBox.tsx";
+import {UserInfoContext} from "../../context/userInfoContext.tsx";
+import useFetchComments from "../../hooks/useFetchComments.ts";
+import ShowCommentBox from "../boxes/showCommentBox.tsx";
+
 
 
 export interface PostLayoutProps {
@@ -20,6 +24,8 @@ export interface PostLayoutProps {
 }
 
 
+
+
 const PostLayout: React.FC<PostLayoutProps> = ({
                                                    userAvatar,
                                                    userName,
@@ -30,9 +36,9 @@ const PostLayout: React.FC<PostLayoutProps> = ({
                                                    likeCount
                                                }) => {
 
-    const [showCommentBox, setShowCommentBox] = React.useState(false);
-
-
+    const [showCommentBox, setShowCommentBox] = useState(false);
+    const {postId} =useContext(UserInfoContext)
+    const { allComments, isFetchComment, fetchAllComments } = useFetchComments(postId);
     return (
         <div className={'post_container'}>
             <div className={'poster_information_container'}>
@@ -52,16 +58,30 @@ const PostLayout: React.FC<PostLayoutProps> = ({
                 {postImg && <img src={postImg} alt="postImg"/>}
             </div>
 
-            {showCommentBox && <CommentBox setShowCommentBox={setShowCommentBox}/>}
+            {showCommentBox && <WriteCommentBox setShowCommentBox={setShowCommentBox} postId={postId}/>}
 
             <div className={'reply_post'}>
                 <PostActionButton totalNumber={commentCount} image={commentIcon}
-                                  onClick={() => setShowCommentBox(!showCommentBox)}/>
+                                  onClick={() => {
+                                      setShowCommentBox(true);
+                                      fetchAllComments();
+                                  }}/>
                 <PostActionButton totalNumber={likeCount} image={likeIconForCount} onClick={() => {
                 }}/>
                 <PostActionButton image={shareIcon} onClick={() => {
                 }}/>
             </div>
+
+            {
+                isFetchComment && allComments.map((comment) => {
+                    return(
+                      <>
+                          <ShowCommentBox userName={comment.userName} userAvatar={comment.userAvatar} commentContent={comment.comment} createAt={comment.createAt} postImg={comment.postImg} />
+                      </>
+                    )
+                })
+            }
+
 
         </div>
     );

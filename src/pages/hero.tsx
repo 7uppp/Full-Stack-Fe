@@ -1,6 +1,6 @@
 import '../css/hero.scss'
 import MakePost from "../components/post/makePost.tsx";
-import ShowLatestTenPosts from "../components/post/showLatestTenPosts.tsx";
+import ShowAllPosts from "../components/post/showAllPosts.tsx";
 
 
 
@@ -14,7 +14,7 @@ const Hero = () => {
                     Home
                 </div>
                 <MakePost/>
-                <ShowLatestTenPosts/>
+                <ShowAllPosts/>
             </div>
         </div>
     );
