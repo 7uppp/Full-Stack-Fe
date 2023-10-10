@@ -2,9 +2,11 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
   span{
     font-size: 0.8rem;
     align-self: end;
+    margin-top: 1rem;
     color: #8d8d8d;
   }
 }

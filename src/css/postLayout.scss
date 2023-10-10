@@ -1,41 +1,48 @@
-.post_container{
+.post_container {
   width: 100%;
   padding: 1rem 1rem;
   box-sizing: border-box;
   overflow: hidden;
-  &:hover{
+
+  &:hover {
     background-color: #f2f2f2;
     border-radius: 1rem;
   }
 
 
-  .poster_information_container{
+  .poster_information_container {
     display: flex;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
 
 
-
-    .poster_details{
+    .poster_details {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
   }
 
-  .post_content{
+  .post_content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0.5rem 3rem;
 
+    .post {
+      line-height: 1.5rem;
+      align-self: flex-start;
+      white-space: normal;
+      text-align:left;
+    }
+
   }
 
-  .reply_post{
-     display: flex;
-     align-items: center;
-     gap: 4rem;
-     padding: 0 3rem;
+  .reply_post {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 0 3rem;
   }
 
 }

@@ -24,7 +24,9 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLogin, setIsLogin] = useState<boolean>(false)
     const [userName, setUserName] = useState<string>('')
-    const [latestTenPosts, setLatestTenPosts] = useState(null)
+    const [allPosts, setAllPosts] = useState(null)
+    const [userId, setUserId] = useState<string>(null)
+    const [postId, setPostId] = useState<string>(null)
 
     const checkLoginStatus = async () => {
         try {
@@ -33,6 +35,7 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
             if (response.status === 200) {
                 setIsLogin(true)
                 setUserName(user.username)
+                setUserId(user.userId)
             } else {
                 setIsLogin(false)
             }
@@ -46,7 +49,8 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
             const response = await makeRequest('GET', '/posts', {})
             if (response.status === 200) {
                 // console.log(response.data)
-                setLatestTenPosts(response.data?.data)
+                setAllPosts(response.data?.data)
+                setPostId(response.data?.data[0].postId)
             }
         } catch (e) {
             console.log(e)
@@ -60,7 +64,7 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
 
 
     return (
-        <UserInfoContext.Provider value={{userName, isLogin, setIsLogin,latestTenPosts}}>
+        <UserInfoContext.Provider value={{userName, userId,isLogin, setIsLogin,allPosts,postId}}>
             {children}
         </UserInfoContext.Provider>
     );

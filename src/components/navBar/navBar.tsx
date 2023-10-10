@@ -33,7 +33,7 @@ const NavBar = () => {
                 <img src={avatar} alt="avatar"/>
                 {
                     isLogin ? <span>Barkalicious,&nbsp; {userName}</span> :
-                        <span> <a href="/src/pages/login">log in</a> </span>
+                        <span> <a href="/login">log in </a> </span>
                 }
             </button>
 

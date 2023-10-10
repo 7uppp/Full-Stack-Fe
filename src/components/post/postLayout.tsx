@@ -2,10 +2,12 @@ import React from 'react';
 import PostActionButton from "./postActionButton.tsx";
 import defaultAvatar from '../../assets/images/avatar.svg'
 import likeIconForCount from '../../assets/images/notLikedIcon.svg'
+import shareIcon from "../../assets/images/shareIcon.svg";
 import {timeDiff} from "../../utility/utility.ts";
 import '../../css/postLayout.scss'
 import commentIcon from "../../assets/images/commentIcon.svg";
-import MakeCommentBox from "../boxes/makeCommentBox.tsx";
+import CommentBox from "../boxes/commentBox.tsx";
+
 
 export interface PostLayoutProps {
     userAvatar: string,
@@ -46,18 +48,19 @@ const PostLayout: React.FC<PostLayoutProps> = ({
             </div>
 
             < div className={'post_content'}>
-                <div>{postContent}</div>
+                <div className={'post'}>{postContent}</div>
                 {postImg && <img src={postImg} alt="postImg"/>}
             </div>
 
-            {showCommentBox && <MakeCommentBox setShowCommentBox={setShowCommentBox}/>}
+            {showCommentBox && <CommentBox setShowCommentBox={setShowCommentBox}/>}
 
             <div className={'reply_post'}>
-                <PostActionButton totalNumber={commentCount} image={commentIcon} onClick={() => setShowCommentBox(!showCommentBox)}/>
+                <PostActionButton totalNumber={commentCount} image={commentIcon}
+                                  onClick={() => setShowCommentBox(!showCommentBox)}/>
                 <PostActionButton totalNumber={likeCount} image={likeIconForCount} onClick={() => {
                 }}/>
-
-
+                <PostActionButton image={shareIcon} onClick={() => {
+                }}/>
             </div>
 
         </div>
