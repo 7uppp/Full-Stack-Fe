@@ -33,7 +33,7 @@
       line-height: 1.5rem;
       align-self: flex-start;
       white-space: normal;
-      text-align:left;
+      text-align: left;
     }
 
   }
@@ -43,6 +43,14 @@
     align-items: center;
     gap: 4rem;
     padding: 0 3rem;
+    box-sizing: border-box;
+  }
+
+
+  .show_comment_box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
   }
 
 }

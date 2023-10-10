@@ -24,11 +24,9 @@ const WriteCommentBox: React.FC<CommentBoxProps> = ({setShowCommentBox, postId})
         if (!userId) {
             navigate('/login')
         }
-        setShowCommentBox(false)
+
 
         try {
-
-            console.log(comment, userId, userName)
             const response = await makeRequest('POST', `/auth/posts/${postId}/comments`, {comment, userId, userName})
             if (response.status === 200) {
                 navigate('/')

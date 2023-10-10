@@ -39,6 +39,12 @@ const PostLayout: React.FC<PostLayoutProps> = ({
     const [showCommentBox, setShowCommentBox] = useState(false);
     const {postId} =useContext(UserInfoContext)
     const { allComments, isFetchComment, fetchAllComments } = useFetchComments(postId);
+    const [openCommentBox, setOpenCommentBox] = useState(false);
+
+
+
+
+
     return (
         <div className={'post_container'}>
             <div className={'poster_information_container'}>
@@ -63,21 +69,24 @@ const PostLayout: React.FC<PostLayoutProps> = ({
             <div className={'reply_post'}>
                 <PostActionButton totalNumber={commentCount} image={commentIcon}
                                   onClick={() => {
-                                      setShowCommentBox(true);
+                                      setShowCommentBox(prev=>!prev);
+                                      setOpenCommentBox(true);
                                       fetchAllComments();
                                   }}/>
+
                 <PostActionButton totalNumber={likeCount} image={likeIconForCount} onClick={() => {
                 }}/>
                 <PostActionButton image={shareIcon} onClick={() => {
                 }}/>
+
             </div>
 
             {
-                isFetchComment && allComments.map((comment) => {
+                isFetchComment && openCommentBox && allComments.map((comment) => {
                     return(
-                      <>
+                      <div className={'show_comment_box'}>
                           <ShowCommentBox userName={comment.userName} userAvatar={comment.userAvatar} commentContent={comment.comment} createAt={comment.createAt} postImg={comment.postImg} />
-                      </>
+                      </div>
                     )
                 })
             }
