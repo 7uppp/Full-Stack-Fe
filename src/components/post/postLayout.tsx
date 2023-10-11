@@ -3,7 +3,7 @@ import PostActionButton from "./postActionButton.tsx";
 import defaultAvatar from '../../assets/images/avatar.svg'
 import likeIconForCount from '../../assets/images/notLikedIcon.svg'
 import shareIcon from "../../assets/images/shareIcon.svg";
-import {timeDiff} from "../../utility/utility.ts";
+import {timeDiff} from "../../utility/timeDifferenceCalculator.ts";
 import '../../css/postLayout.scss'
 import commentIcon from "../../assets/images/commentIcon.svg";
 import WriteCommentBox from "../boxes/writeCommentBox.tsx";

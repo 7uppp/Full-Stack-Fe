@@ -1,4 +1,4 @@
-// dateUtils.ts
+
 
  function timeDiff(creatAt: string) {
     const postDate = new Date(creatAt);
@@ -16,5 +16,7 @@
         return diffInSeconds.toFixed(0) + "s";
     }
 }
+
+
 
 export {timeDiff}

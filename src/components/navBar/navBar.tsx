@@ -1,16 +1,17 @@
-import '../../css/navBar.scss'
-import mainLogo from '../../assets/images/mainLogo.svg'
-import {UserInfoContext} from "../../context/userInfoContext.tsx";
-import {useContext} from "react";
-import avatar from '../../assets/images/avatar.svg'
+import { useContext, useRef } from 'react';
+import '../../css/navBar.scss';
+import mainLogo from '../../assets/images/mainLogo.svg';
+import { UserInfoContext } from "../../context/userInfoContext.tsx";
+import defaultAvatar from '../../assets/images/avatar.svg';
 import VerticalNavBarItem from "./verticalNavBarItem.tsx";
 import NavItems from "../../constants/verticalNavConstans.ts";
 import GeneralButton from "../buttons/generalButton.tsx";
-
+import { handleFileChange, handleProfileClick } from '../../utility/uploadImageHnadler.ts';
 
 const NavBar = () => {
+    const { userName, isLogin, userAvatar, onFileSelected } = useContext(UserInfoContext);
+    const fileInputRef = useRef(null);
 
-    const {userName, isLogin} = useContext(UserInfoContext)
     return (
         <div className={'navbar'}>
             <div className={'navbar_wrapper'}>
@@ -24,21 +25,35 @@ const NavBar = () => {
                     ))}
                 </div>
 
-                <GeneralButton className={'post_button'} text={"Pawst"} onClick={() => {
-                }} customStyle={{fontSize: "0.8rem", fontFamily: "Young Serif, serif", height: "3.2rem"}}/>
-
+                <GeneralButton className={'post_button'} text={"Pawst"} onClick={() => {}} customStyle={{fontSize: "0.8rem", fontFamily: "Young Serif, serif", height: "3.2rem"}}/>
             </div>
 
-            <button className={'profile'}>
-                <img src={avatar} alt="avatar"/>
+            <div className={isLogin ? 'profile' : 'profile not-logged-in'}>
                 {
-                    isLogin ? <span>Barkalicious,&nbsp; {userName}</span> :
-                        <span> <a href="/login">log in </a> </span>
+                    isLogin ?
+                        <>
+                            <img
+                                className={'avatar'}
+                                src={userAvatar || defaultAvatar}
+                                alt="avatar"
+                                onClick={() => handleProfileClick(fileInputRef)}
+                            />
+                            <span>Barkalicious, {userName}</span>
+                        </>
+                        :
+                        <span>
+                            <a href="/login">log in </a>
+                        </span>
                 }
-            </button>
-
+                <input
+                    type="file"
+                    style={{ display: 'none' }}
+                    ref={fileInputRef}
+                    onChange={(e) => handleFileChange(e, onFileSelected)}
+                />
+            </div>
         </div>
-    )
+    );
 }
 
-export default NavBar
+export default NavBar;

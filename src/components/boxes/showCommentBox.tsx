@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/showCommentBox.css';
 import defaultAvatar from "../../assets/images/avatar.svg";
-import {timeDiff} from "../../utility/utility.ts";
+import {timeDiff} from "../../utility/timeDifferenceCalculator.ts";
 
 interface ShowCommentBoxProps {
     userName: string,

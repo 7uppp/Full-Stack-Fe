@@ -52,6 +52,12 @@
       cursor: pointer;
     }
 
+    .avatar{
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+
+    }
 
     span {
       white-space: nowrap;
@@ -62,6 +68,9 @@
         text-decoration: none;
         color: black;
       }
+    }
+    &.not-logged-in {
+      justify-content: center;
     }
   }
 

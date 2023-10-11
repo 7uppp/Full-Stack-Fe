@@ -13,11 +13,12 @@ const makeRequest = async (
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
     url: string = '',
     data: DataPayload | null = null,
+    formData?: FormData,
 ) => {
     try {
         return await axiosInstance({
             method: method,
-            data: data,
+            data: formData || data,
             url: url,
         });
     } catch (error) {
