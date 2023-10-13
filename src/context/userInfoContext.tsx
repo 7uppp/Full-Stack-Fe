@@ -1,7 +1,5 @@
 import React, {createContext, ReactNode, useEffect, useState} from 'react';
 import makeRequest from "../service/makeRequest.ts";
-import {uploadAvatar} from "../utility/uploadImageHnadler.ts";
-
 
 type UserInfoContextType = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,29 +26,21 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
     const [allPosts, setAllPosts] = useState(null)
     const [userId, setUserId] = useState<string>('')
     const [postId, setPostId] = useState<string>('')
+    const [userAvatar, setUserAvatar] = useState<string>('')
+    const [isAvatarChanged, setIsAvatarChanged] = useState<boolean>(false)
 
-    const [userAvatar, setUserAvatar] = useState<string | null>(null);
-
-    const onFileSelected = async (file: File) => {
-        if (isLogin && userId) {
-            const signedAvatarUrl = await uploadAvatar(userId, file);
-            if (signedAvatarUrl) {
-                setUserAvatar(signedAvatarUrl);
-            }
-        } else {
-            console.log('User is not logged in, cannot upload avatar.');
-        }
-    };
 
     const checkLoginStatus = async () => {
         try {
             const response = await makeRequest('POST', '/getUserInfo', {})
-            const user = response.data.user
 
+            const user = response.data.user
+            console.log(user)
             if (response.status === 200) {
                 setIsLogin(true)
-                setUserName(user.username)
-                setUserId(user.userId)
+                setUserName(user?.username)
+                setUserId(user?.userId)
+                setUserAvatar(user?.avatarSignedUrl)
             } else {
                 setIsLogin(false)
             }
@@ -73,15 +63,17 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
             console.log(e)
         }
     }
-
     useEffect(() => {
         checkLoginStatus();
+    },[isAvatarChanged])
+
+    useEffect(() => {
         loadAllPosts();
     }, []);
 
 
     return (
-        <UserInfoContext.Provider value={{userName, userId, isLogin, setIsLogin, allPosts, postId, userAvatar, setUserAvatar, onFileSelected}}>
+        <UserInfoContext.Provider value={{userName, userId, isLogin, setIsLogin, allPosts, postId, userAvatar, setUserAvatar,setIsAvatarChanged}}>
             {children}
         </UserInfoContext.Provider>
 
