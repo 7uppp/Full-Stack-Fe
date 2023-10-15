@@ -10,7 +10,8 @@ const defaultUserInfoContext: UserInfoContextType = {
     userName: '',
     isLogin: false,
     latestTenPosts: [],
-    setIsLogin: () => {},
+    setIsLogin: () => {
+    },
 };
 export const UserInfoContext = createContext<UserInfoContextType>(defaultUserInfoContext);
 
@@ -32,32 +33,39 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
 
     const checkLoginStatus = async () => {
         try {
-            const response = await makeRequest('POST', '/getUserInfo', {})
-
-            const user = response.data.user
-            console.log(user)
+            const response = await makeRequest('POST', '/getUserInfo', {});
+            const user = response.data.user;
             if (response.status === 200) {
-                setIsLogin(true)
-                setUserName(user?.username)
-                setUserId(user?.userId)
-                setUserAvatar(user?.avatarSignedUrl)
+                setIsLogin(true);
+                setUserName(user?.username);
+                setUserId(user?.userId);
+
+                // Use user?.userId directly here instead of userId from state
+                try {
+                    const avatarResponse = await makeRequest('GET', `/auth/getUserAvatar/${user?.userId}`, {});
+                    if (avatarResponse.status === 200) {
+                        setUserAvatar(avatarResponse.data?.avatarURL);
+                    }
+                } catch (e) {
+                    console.log("get user avatar failed");
+                }
+
             } else {
-                setIsLogin(false)
+                setIsLogin(false);
             }
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     };
+
 
 
     const loadAllPosts = async () => {
         try {
             const response = await makeRequest('GET', '/posts', {})
             if (response.status === 200) {
-
                 setAllPosts(response.data?.data)
                 setPostId(response.data?.data[0].postId)
-
             }
         } catch (e) {
             console.log(e)
@@ -65,7 +73,7 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
     }
     useEffect(() => {
         checkLoginStatus();
-    },[isAvatarChanged])
+    }, [isAvatarChanged])
 
     useEffect(() => {
         loadAllPosts();
@@ -73,7 +81,17 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
 
 
     return (
-        <UserInfoContext.Provider value={{userName, userId, isLogin, setIsLogin, allPosts, postId, userAvatar, setUserAvatar,setIsAvatarChanged}}>
+        <UserInfoContext.Provider value={{
+            userName,
+            userId,
+            isLogin,
+            setIsLogin,
+            allPosts,
+            postId,
+            userAvatar,
+            setUserAvatar,
+            setIsAvatarChanged
+        }}>
             {children}
         </UserInfoContext.Provider>
 
