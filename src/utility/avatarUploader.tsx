@@ -69,6 +69,7 @@ const AvatarLoader = () => {
             }
             <input
                 type="file"
+                accept=".jpeg, .jpg, .png"
                 style={{ display: 'none' }}
                 ref={fileInputRef}
                 onChange={handleFileChange}

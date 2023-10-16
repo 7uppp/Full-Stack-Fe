@@ -1,4 +1,4 @@
-import React, {useContext,useState} from 'react';
+import React, {useState} from 'react';
 import PostActionButton from "./postActionButton.tsx";
 import defaultAvatar from '../../assets/images/avatar.svg'
 import likeIconForCount from '../../assets/images/notLikedIcon.svg'
@@ -7,42 +7,36 @@ import {timeDiff} from "../../utility/timeDifferenceCalculator.ts";
 import '../../css/postLayout.scss'
 import commentIcon from "../../assets/images/commentIcon.svg";
 import WriteCommentBox from "../boxes/writeCommentBox.tsx";
-import {UserInfoContext} from "../../context/userInfoContext.tsx";
 import useFetchComments from "../../hooks/useFetchComments.ts";
 import ShowCommentBox from "../boxes/showCommentBox.tsx";
-
 
 
 export interface PostLayoutProps {
     userAvatar: string,
     userName: string,
     postContent: string,
+    postId: string,
     postImg?: string,
     createAt: string,
+    commentCount?: number,
     likeCount: number,
-    commentCount: number,
 }
-
-
 
 
 const PostLayout: React.FC<PostLayoutProps> = ({
                                                    userAvatar,
                                                    userName,
                                                    postContent,
+                                                   postId,
                                                    postImg,
                                                    createAt,
                                                    commentCount,
-                                                   likeCount
+                                                   likeCount,
                                                }) => {
 
     const [showCommentBox, setShowCommentBox] = useState(false);
-    const {postId} =useContext(UserInfoContext)
-    const { allComments, isFetchComment, fetchAllComments } = useFetchComments(postId);
+    const {allComments, isFetchComment, fetchAllComments} = useFetchComments(postId);
     const [openCommentBox, setOpenCommentBox] = useState(false);
-
-
-
 
 
     return (
@@ -69,7 +63,7 @@ const PostLayout: React.FC<PostLayoutProps> = ({
             <div className={'reply_post'}>
                 <PostActionButton totalNumber={commentCount} image={commentIcon}
                                   onClick={() => {
-                                      setShowCommentBox(prev=>!prev);
+                                      setShowCommentBox(prev => !prev);
                                       setOpenCommentBox(true);
                                       fetchAllComments();
                                   }}/>
@@ -83,10 +77,12 @@ const PostLayout: React.FC<PostLayoutProps> = ({
 
             {
                 isFetchComment && openCommentBox && (allComments || []).map((comment) => {
-                    return(
-                      <>
-                          {showCommentBox ? <ShowCommentBox userName={comment?.userName} userAvatar={comment?.userAvatar} commentContent={comment?.comment} createAt={comment?.createAt} postImg={comment?.postImg} /> : null}
-                      </>
+                    return (
+                        <>
+                            {showCommentBox ? <ShowCommentBox userName={comment?.userName} userAvatar={comment?.userAvatar}
+                                                              commentContent={comment?.comment} createAt={comment?.createAt}
+                                                              postImg={comment?.postImg}/> : null}
+                        </>
                     )
                 })
             }

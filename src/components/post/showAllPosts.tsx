@@ -18,8 +18,9 @@ const ShowAllPosts = () => {
                     postContent={post.post}
                     postImg={post.postImg}
                     createAt={post.createAt}
+                    commentCount={post.commentCount}
+                    postId={post.postId}
                     likeCount={0}
-                    commentCount={0}
                     // likeCount={post.likeCount}
                     // commentCount={post.commentCount}
                 />

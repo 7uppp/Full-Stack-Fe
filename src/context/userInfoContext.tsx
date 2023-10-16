@@ -26,9 +26,9 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
     const [userName, setUserName] = useState<string>('')
     const [allPosts, setAllPosts] = useState(null)
     const [userId, setUserId] = useState<string>('')
-    const [postId, setPostId] = useState<string>('')
     const [userAvatar, setUserAvatar] = useState<string>('')
     const [isAvatarChanged, setIsAvatarChanged] = useState<boolean>(false)
+    const [totalComments, setTotalComments] = useState<number>(0)
 
 
     const checkLoginStatus = async () => {
@@ -65,7 +65,7 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
             const response = await makeRequest('GET', '/posts', {})
             if (response.status === 200) {
                 setAllPosts(response.data?.data)
-                setPostId(response.data?.data[0].postId)
+                setTotalComments(response.data?.data[0].commentCount)
             }
         } catch (e) {
             console.log(e)
@@ -73,7 +73,7 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
     }
     useEffect(() => {
         checkLoginStatus();
-    }, [isAvatarChanged])
+    }, [isAvatarChanged,isLogin])
 
     useEffect(() => {
         loadAllPosts();
@@ -87,7 +87,7 @@ export const UserInfoContextProvider: React.FC<UserInfoContextProviderProps> = (
             isLogin,
             setIsLogin,
             allPosts,
-            postId,
+            totalComments,
             userAvatar,
             setUserAvatar,
             setIsAvatarChanged
