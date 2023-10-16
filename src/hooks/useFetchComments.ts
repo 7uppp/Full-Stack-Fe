@@ -1,5 +1,5 @@
 // hooks/useFetchComments.ts
-import { useState, useCallback } from 'react';
+import { useState} from 'react';
 import makeRequest from '../service/makeRequest';
 
 
@@ -14,7 +14,7 @@ const useFetchComments = (postId: string) => {
     const [allComments, setAllComments] = useState<CommentType[]>([]);
     const [isFetchComment, setIsFetchComment] = useState(false);
 
-    const fetchAllComments = useCallback(async () => {
+    const fetchAllComments = async () => {
         const result = await makeRequest('GET', `/posts/${postId}/comments`, { postId });
         try {
             if (result.status === 200) {
@@ -25,7 +25,7 @@ const useFetchComments = (postId: string) => {
             setIsFetchComment(false);
             console.log('fetch comments failed');
         }
-    }, [postId]);
+    };
 
     return {
         allComments,

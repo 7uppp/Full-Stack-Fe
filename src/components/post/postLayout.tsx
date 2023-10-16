@@ -76,13 +76,13 @@ const PostLayout: React.FC<PostLayoutProps> = ({
             </div>
 
             {
-                isFetchComment && openCommentBox && (allComments || []).map((comment) => {
+                isFetchComment && openCommentBox && (allComments || []).map((comment,index) => {
                     return (
-                        <>
-                            {showCommentBox ? <ShowCommentBox userName={comment?.userName} userAvatar={comment?.userAvatar}
+                        <React.Fragment key={index}>
+                            {showCommentBox ? <ShowCommentBox  userName={comment?.userName} userAvatar={comment?.userAvatar}
                                                               commentContent={comment?.comment} createAt={comment?.createAt}
                                                               postImg={comment?.postImg}/> : null}
-                        </>
+                        </React.Fragment>
                     )
                 })
             }

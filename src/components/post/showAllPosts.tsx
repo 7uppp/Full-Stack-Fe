@@ -10,9 +10,9 @@ const ShowAllPosts = () => {
 
     return (
         <>
-            {allPostsContent.slice(0, 10).map((post: any) => (
+            {allPostsContent.slice(0, 10).map((post: any,index:number) => (
                 <PostLayout
-                    key={post.postId}
+                    key={index}
                     userAvatar={post.userAvatar ?? defaultAvatar}
                     userName={post.userName}
                     postContent={post.post}
@@ -22,7 +22,6 @@ const ShowAllPosts = () => {
                     postId={post.postId}
                     likeCount={0}
                     // likeCount={post.likeCount}
-                    // commentCount={post.commentCount}
                 />
 
             ))}

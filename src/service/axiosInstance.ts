@@ -25,9 +25,8 @@ axiosInstance.interceptors.response.use(
 
     response => response,
     async error => {
-        console.log(error)
-
-        if (error.response.status === 401  && isFirstRefreshing) { // token expired
+        if (error.response.status === 401  && isFirstRefreshing) {
+            // token expired
             //avoid infinite loop
             isFirstRefreshing = false;
             try {
@@ -64,6 +63,9 @@ axiosInstance.interceptors.response.use(
             }
         }
 
+        if(error.response.status === 404){
+            return Promise.resolve(error.response.data.message);
+        }
         return Promise.reject(error);
     }
 );
